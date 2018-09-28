@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RazorPagesContacts.Data
-{
+namespace LearnCoreMvc.Models
+{ 
     public class Customer
     {
         public int Id { get; set; }

@@ -29,6 +29,13 @@ namespace LearnCoreMvc.Controllers
             return View();
         }
 
+        public IActionResult Create()
+        {
+            //ViewData["Message"] = "Your Create page.";
+
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

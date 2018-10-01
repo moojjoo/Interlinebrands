@@ -50,5 +50,39 @@ namespace InterviewMvcApi.Controllers
 
             return CreatedAtRoute("GetMovie", new { id = item.ID }, item);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(long id, MovieItem item)
+        {
+            var todo = _context.MovieItems.Find(id);
+            if (todo == null)
+            {
+                return NotFound();
+            }
+
+            item.ID = item.ID;
+            item.Title = item.Title;
+            item.ReleaseDate = item.ReleaseDate;
+            item.Genre = item.Genre;
+            
+
+            _context.MovieItems.Update(todo);
+            _context.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
+        {
+            var movie = _context.MovieItems.Find(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            _context.MovieItems.Remove(movie);
+            _context.SaveChanges();
+            return NoContent();
+        }
     }
 }

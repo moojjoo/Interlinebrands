@@ -40,6 +40,15 @@ namespace InterviewMvcApi.Controllers
                 return NotFound();
             }
             return item;
-        }    
+        }
+
+        [HttpPost]
+        public IActionResult Create(MovieItem item)
+        {
+            _context.MovieItems.Add(item);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("GetMovie", new { id = item.ID }, item);
+        }
     }
 }

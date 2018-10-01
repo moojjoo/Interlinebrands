@@ -11,7 +11,7 @@ namespace InterviewMvcApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MovieContext>(opt =>
-                opt.UseInMemoryDatabase("TodoList"));
+                opt.UseInMemoryDatabase("MovieList"));
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

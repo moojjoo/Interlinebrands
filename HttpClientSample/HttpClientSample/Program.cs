@@ -17,13 +17,20 @@ namespace HttpClientSample
             movieTask.ContinueWith(task =>
             {
             var movie = task.Result;
-            foreach (var movieItem in movie)           
-                Console.Write(movieItem.ToString());
-                Environment.Exit(0);
+            foreach (var movieModel in movie)           
+                Console.Write(movieModel.ID 
+                    + " " + movieModel.Title
+                    + " " + movieModel.Genre
+                    + " " + movieModel.ReleaseDate
+                    + " " + movieModel.Price
+                    + Environment.NewLine);
+                
+
+                //Environment.Exit(0);
             },
             TaskContinuationOptions.OnlyOnRanToCompletion);
 
-            Console.Read();
+            Console.ReadLine();
         }
     }
 }

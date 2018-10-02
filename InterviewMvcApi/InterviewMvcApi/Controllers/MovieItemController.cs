@@ -25,7 +25,7 @@ namespace InterviewMvcApi.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet]        
         public ActionResult<List<MovieModel>> GetAll()
         {
             return _context.MovieModel.ToList();

@@ -7,19 +7,19 @@ namespace InterviewMvcApi.Controllers
 {
     [Route("api/movieitem")]
     [ApiController]
-    public class TodoController : ControllerBase
+    public class MovieController : ControllerBase
     {
         private readonly MovieContext _context;
 
-        public TodoController(MovieContext context)
+        public MovieController(MovieContext context)
         {
             _context = context;
 
             if (_context.MovieItems.Count() == 0)
             {
                 // Create a new TodoItem if collection is empty,
-                // which means you can't delete all TodoItems.
-                _context.MovieItems.Add(new MovieItem { Title = "Item1" });
+                // which means you can't delete all MovieItems.
+                _context.MovieItems.Add(new MovieItem { Title = "ItemTest1" });
                 _context.SaveChanges();
             }
 

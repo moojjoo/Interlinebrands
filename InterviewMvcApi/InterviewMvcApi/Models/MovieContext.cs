@@ -4,11 +4,11 @@ namespace InterviewMvcApi.Models
 {
     public class MovieContext : DbContext
     {
-        public MovieContext(DbContextOptions<MovieContext> options)
+        public MovieContext(DbContextOptions<InterviewMvcContext> options)
            : base(options)
         {
         }
 
-        public DbSet<MovieItem> MovieItems { get; set; }
+        public DbSet<MovieModel> MovieModels { get; set; }
     }
 }

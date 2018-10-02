@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace InterviewMvcApi.Models
 {
@@ -13,7 +9,7 @@ namespace InterviewMvcApi.Models
         {
         }
 
-        public DbSet<InterviewMvcApi.Models.MovieItem> MovieItem { get; set; }
+        public DbSet<MovieModel> MovieModel { get; set; }
         public object Movie { get; internal set; }
     }
 }

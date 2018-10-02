@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InterviewMvcApi.Models
 {
-    public class MovieItem
+    public class MovieModel
     { 
         public int ID { get; set; }
         public string Title { get; set; }

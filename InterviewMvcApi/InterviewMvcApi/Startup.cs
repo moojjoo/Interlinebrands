@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using InterviewMvcApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace InterviewMvcApi
 {
@@ -17,20 +19,35 @@ namespace InterviewMvcApi
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDbContext<InterviewMvcContext>(options =>
-                     options.UseSqlServer(Configuration.GetConnectionString("InterviewMvcContext")));
-            services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+        {            
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<InterviewMvcContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("InterviewMvcContext")));
+
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            env.EnvironmentName = EnvironmentName.Development;
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
+
+            app.UseStatusCodePages();
+
+
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 

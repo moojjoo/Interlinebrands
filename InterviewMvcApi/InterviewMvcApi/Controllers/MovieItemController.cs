@@ -5,36 +5,36 @@ using System.Linq;
 
 namespace InterviewMvcApi.Controllers
 {
-    [Route("api/movieitem")]
+    [Route("api/movie")]
     [ApiController]
     public class MovieController : ControllerBase
     {
-        private readonly MovieContext _context;
+        private readonly InterviewMvcContext _context;
 
-        public MovieController(MovieContext context)
+        public MovieController(InterviewMvcContext context)
         {
             _context = context;
 
-            if (_context.MovieItems.Count() == 0)
+            if (_context.MovieModel.Count() == 0)
             {
                 // Create a new TodoItem if collection is empty,
                 // which means you can't delete all MovieItems.
-                _context.MovieItems.Add(new MovieItem { Title = "ItemTest1" });
+                _context.MovieModel.Add(new MovieModel { Title = "ItemTest1" });
                 _context.SaveChanges();
             }
 
         }
 
         [HttpGet]
-        public ActionResult<List<MovieItem>> GetAll()
+        public ActionResult<List<MovieModel>> GetAll()
         {
-            return _context.MovieItems.ToList();
+            return _context.MovieModel.ToList();
         }
 
         [HttpGet("{id}", Name = "GetMovie")]
-        public ActionResult<MovieItem> GetById(long id)
+        public ActionResult<MovieModel> GetById(long id)
         {
-            var item = _context.MovieItems.Find(id);
+            var item = _context.MovieModel.Find(id);
             if (item == null)
             {
                 return NotFound();
@@ -43,18 +43,18 @@ namespace InterviewMvcApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(MovieItem item)
+        public IActionResult Create(MovieModel item)
         {
-            _context.MovieItems.Add(item);
+            _context.MovieModel.Add(item);
             _context.SaveChanges();
 
             return CreatedAtRoute("GetMovie", new { id = item.ID }, item);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(long id, MovieItem item)
+        public IActionResult Update(long id, MovieModel item)
         {
-            var todo = _context.MovieItems.Find(id);
+            var todo = _context.MovieModel.Find(id);
             if (todo == null)
             {
                 return NotFound();
@@ -66,7 +66,7 @@ namespace InterviewMvcApi.Controllers
             item.Genre = item.Genre;
             
 
-            _context.MovieItems.Update(todo);
+            _context.MovieModel.Update(todo);
             _context.SaveChanges();
             return NoContent();
         }
@@ -74,13 +74,13 @@ namespace InterviewMvcApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var movie = _context.MovieItems.Find(id);
+            var movie = _context.MovieModel.Find(id);
             if (movie == null)
             {
                 return NotFound();
             }
 
-            _context.MovieItems.Remove(movie);
+            _context.MovieModel.Remove(movie);
             _context.SaveChanges();
             return NoContent();
         }

@@ -49,8 +49,9 @@ namespace RazorPagesMovie
             }
             else
             {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
+                app.UseDeveloperExceptionPage();
+                //app.UseExceptionHandler("/Error");
+                //app.UseHsts();
             }
 
             app.UseHttpsRedirection();

@@ -27,11 +27,14 @@ namespace HttpClientSample
             HttpResponseMessage response = await client.GetAsync("api/movieitem", cancellationToken);
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadAsAsync<List<Movie>>();
+                var stringResult = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<Movie>>(stringResult);
             }
             return new List<Movie>();
 
         }
-        
+
+
+
     }
 }

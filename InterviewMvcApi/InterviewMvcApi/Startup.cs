@@ -19,7 +19,17 @@ namespace InterviewMvcApi
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
-        {            
+        {
+            // Add service and create Policy with options
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -35,6 +45,9 @@ namespace InterviewMvcApi
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            // global policy - assign here or on each controller
+            app.UseCors("CorsPolicy");
+
             env.EnvironmentName = EnvironmentName.Development;
             if (env.IsDevelopment())
             {

@@ -25,28 +25,23 @@ function getData() {
     $.ajax({
         type: 'GET',
         url: uri,
-        dataType: 'json',
+        dataType: 'json',       
         success: function (data) {
-            //$('#movies').empty();
-            ////getCount(data.length);
-            //$.each(data, function (key, item) {               
+            $('#movies').empty();
+            //getCount(data.length);
 
-            //    $('<tr><td>' + item.Title + '></td>' +
-            //        '<td>' + item.ReleaseDate + '</td>' +
-            //        '<td>' + item.Genre + '</td>' +
-            //        '<td>' + item.Price + '</td>' +
-            //        '<td><button onclick="editItem(' + item.id + ')">Edit</button></td>' +
-            //        '<td><button onclick="deleteItem(' + item.id + ')">Delete</button></td>' +
-            //        '</tr>').appendTo($('#movies'));
-            //});
-            console.log(data);
-            movies = data;
-        
+            $.each(data, function (index, item) {
+                $('<tr><td>' + item.title + '</td>' +
+                    '<td>' + item.releaseDate + '</td>' +
+                    '<td>' + item.genre + '</td>' +
+                    '<td>' + item.price + '</td>' +
+                    '</tr>').appendTo($('#movies'));
+            });
         },
-        error: function () {
-            console.log("Error Fix this!")
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error");
         }
-    });
+    })
 }
 
 function addItem() {

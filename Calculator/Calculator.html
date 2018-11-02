@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form>
+    <p><b>Name: </b> <input TYPE="TEXT" SIZE="20" NAME="yourname"></p>
+
+    <p><b>Assignment 1: </b><input type="number" id="assign1" size=10 value="" name="onlynumbers" min="0" max="25" required><span class="required">*</span></p>
+
+    <p><b>Assignment 2: </b><input type="number" id="assign2" size=10 value="" name="onlynumbers" min="0" max="25" required><span class="required">*</span></p>
+
+    <p><b>Assignment 3: </b><input type="number" id="assign3" size=10 value="" name="onlynumbers" min="0" max="25" required><span class="required">*</span></p>
+
+    <p><b>Assignment 4: </b><input type="number" id="assign4" size=10 value="" name="onlynumbers" min="0" max="25" required><span class="required">*</span></p>
+
+    <p><b>Midterm Exam: </b><input type="number" id="assign5" size=10 value="" name="onlynumbers" min="0" max="100" required><span class="required">*</span></p>
+
+    <p><b>Final Exam: </b><input type="number" id="assign6" size=10 value="" name="onlynumbers" min="0" max="100" required><span class="required">*</span></p>
+
+    <p><b>Final Project:</b><input type="number" id="assign7" size=10 value="" name="onlynumbers" min="0" max="100" required=""><span class="required">*</span></p>
+
+    <p>
+        <button onclick="calculator(); return false;">Submit</button>
+        <input type="reset" value="Reset ">
+    </p>
+
+    <p>
+        <label id="lblGrade"/>
+    </p>
+    </form>
+
+    <script type="text/javascript">
+
+        function calculator() {
+            var average = 0;
+
+            var grade1 = parseFloat(document.getElementById('assign1').value * 1);
+            var grade2 = parseFloat(document.getElementById('assign2').value * 1);
+            var grade3 = parseFloat(document.getElementById('assign3').value * 1);
+            var grade4 = parseFloat(document.getElementById('assign4').value * 1);
+            var grade5 = parseFloat(document.getElementById('assign5').value * 1);
+            var grade6 = parseFloat(document.getElementById('assign6').value * 1);
+            var grade7 = parseFloat(document.getElementById('assign7').value * 1);
+            var total = grade1 + grade2 + grade3 + grade4 + grade5 + grade6 + grade7;
+            average = total / 7;
+
+            if (average > 0) {
+                document.getElementById('lblGrade').innerHTML = 'Your Final Grade = ' + average;
+            }
+        }
+    </script>
+
+</body>
+</html>
